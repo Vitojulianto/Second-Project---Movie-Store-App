@@ -13,7 +13,7 @@ const LoginForm = () => {
     const {register, handleSubmit, formState: {errors}} = useForm()
 
     const onSubmit = (data) => {
-        const savedData = JSON.parse(localStorage.getItem('username'));
+        const savedData = JSON.parse(localStorage.getItem('user'));
         if(savedData.username === data.username && savedData.password === data.password){
             localStorage.setItem('loggedInUser', data.username);    
             navigate('/home')
@@ -29,14 +29,14 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}className="space-y-5">
           <div>
             <label className="block text-sm font-medium text-gray-700">Username</label>
-            <Input type='text' placeholder="Enter your username" name="username"
+            <Input type='text' placeholder="Enter your username" 
             {...register('username', {required: 'Username is required'})}/>
             {errors.username && <p className="text-red-500">{errors.username.message}</p>}
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700">Password</label>
-            <Input type='password' placeholder="Enter your password" name="password"
+            <Input type='password' placeholder="Enter your password" 
             {...register('password',{required:'Password is required', minLength:
                 {value: 8, message: 'Password must be at least 8 characters'}})}
             />
