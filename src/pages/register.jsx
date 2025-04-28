@@ -14,7 +14,7 @@ const RegisterForm = () => {
 
     const onSubmit = (data) => {
         console.log(data)
-        localStorage.setItem('data', JSON.stringify(data))
+        localStorage.setItem('user', JSON.stringify(data))
         navigate('/login')
     }
 
@@ -25,14 +25,14 @@ const RegisterForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}className="space-y-5">
           <div>
             <label className="block text-sm font-medium text-gray-700">Username</label>
-            <Input type='text' placeholder="Enter your username" name="username"
+            <Input type='text' placeholder="Enter your username" 
             {...register('username', {required: 'Username is required'})}/>
             {errors.username && <p className="text-red-500">{errors.username.message}</p>}
           </div>
           
           <div>
             <label className="block text-sm font-medium text-gray-700">Password</label>
-            <Input type='password' placeholder="Enter your password" name="password"
+            <Input type='password' placeholder="Enter your password" 
             {...register('password',{required:'Password is required', minLength:
                 {value: 8, message: 'Password must be at least 8 characters'}})}
             />
@@ -45,7 +45,7 @@ const RegisterForm = () => {
                 {value: 8, message: 'Password must be at least 8 characters'},
                 validate: (value) => value === watch('password') || 'Passwords do not matchs'})}
             />
-            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+            {errors.password && <p className="text-red-500">{errors.confirmpassword.message}</p>}
           </div>
           <Button type="submit" className="btn w-full bg-purple-600 hover:bg-purple-700 text-white">
             Login
